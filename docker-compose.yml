@@ -1,1 +1,26 @@
-# TODO
+version: '3.8'
+
+services:
+  # 1. MongoDB for your Database
+  mongodb:
+    image: mongo:latest
+    container_name: codesync_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+  # 2. Local Code Execution Sandbox (Optional but recommended)
+  # This matches the Piston engine you are trying to use in env.js
+  piston:
+    image: ghcr.io/engineer-man/piston
+    container_name: codesync_piston
+    ports:
+      - "2000:2000"
+    restart: unless-stopped
+    # You will need to install specific languages inside the container later
+    # e.g., docker exec -it codesync_piston cli packages install nodejs python
+
+volumes:
+  mongo_data:
