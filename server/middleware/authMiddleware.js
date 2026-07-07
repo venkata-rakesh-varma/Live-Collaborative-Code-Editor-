@@ -5,11 +5,8 @@ const protect = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        message: "Access denied. No token provided.",
-      });
+    if (!token || token === "null" || token === "undefined") {
+      return next();
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -18,10 +15,8 @@ const protect = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid token",
-    });
+    // Proceed as guest even if token verification fails
+    next();
   }
 };
 

@@ -10,7 +10,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-400 ${className}`}
+      className={`px-4 py-2.5 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-500 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none transition-all shadow-md hover:shadow-lg disabled:shadow-none btn-glow ${className}`}
     >
       {children}
     </button>

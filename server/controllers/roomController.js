@@ -10,7 +10,7 @@ exports.createRoom = async (req, res) => {
       roomId: uuidv4(),
       title,
       language,
-      createdBy: req.user.id,
+      createdBy: req.user ? req.user.id : null,
     });
 
     res.status(201).json({
@@ -40,7 +40,7 @@ exports.joinRoom = async (req, res) => {
     }
 
     room.participants.push({
-      userId: req.user.id,
+      userId: req.user ? req.user.id : null,
       username,
     });
 

@@ -10,7 +10,7 @@ const {
   updateCode,
 } = require("../controllers/roomController");
 
-router.post("/", protect, createRoom);
+router.post("/", createRoom);
 router.post("/join", protect, joinRoom);
 router.get("/:roomId", protect, getRoom);
 router.put("/:roomId/code", protect, updateCode);

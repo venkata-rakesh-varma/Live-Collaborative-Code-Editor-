@@ -5,8 +5,11 @@ const registerChatSocket = require("./chatSocket");
 const initializeSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: process.env.CLIENT_URL,
+      origin: (origin, callback) => {
+        callback(null, true);
+      },
       methods: ["GET", "POST"],
+      credentials: true,
     },
   });
 
